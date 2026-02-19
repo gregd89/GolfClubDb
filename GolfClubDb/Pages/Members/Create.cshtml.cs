@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GolfClubDb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using GolfClubDb.Data;
-using GolfClubDb.Models;
 
 namespace GolfClubDb.Pages.Members
 {
@@ -21,17 +16,21 @@ namespace GolfClubDb.Pages.Members
 
         public IActionResult OnGet()
         {
+            GenderSelectList = new SelectList(Enum.GetValues(typeof(Gender)));
             return Page();
         }
 
         [BindProperty]
         public Member Member { get; set; } = default!;
 
+        public SelectList GenderSelectList { get; set; } = default!;
+
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                GenderSelectList = new SelectList(Enum.GetValues(typeof(Gender)));
                 return Page();
             }
 

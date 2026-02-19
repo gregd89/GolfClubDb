@@ -10,6 +10,23 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<!-- Filter Button-->
+<form method="get">
+    <select asp-for="GenderFilter" asp-items="Html.GetEnumSelectList<GolfClubDb.Models.Gender>()">
+        <option value = "">All</option>
+    </select>
+    <input type="submit" value="Filter" />
+
+</form>
+
+<!-- Sort Buttons-->
+<a asp-page="./Index" asp-route-sortOrder="name_asc"> Sort Name Asc</a> |
+<a asp-page="./Index" asp-route-sortOrder="name_desc"> Sort Name Desc</a> |
+<a asp-page="./Index" asp-route-sortOrder="handicap_asc"> Sort Handicap Asc</a> |
+<a asp-page="./Index" asp-route-sortOrder="handicap_desc"> Sort Handicap Desc</a> 
+
+
 <table class="table">
     <thead>
         <tr>
