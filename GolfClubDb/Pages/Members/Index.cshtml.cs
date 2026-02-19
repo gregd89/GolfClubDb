@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GolfClubDb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using GolfClubDb.Data;
-using GolfClubDb.Models;
 
 namespace GolfClubDb.Pages.Members
 {
@@ -19,11 +14,41 @@ namespace GolfClubDb.Pages.Members
             _context = context;
         }
 
-        public IList<Member> Member { get;set; } = default!;
+        public IList<Member> Member { get; set; } = new List<Member>();
+
+        // Filter
+        [BindProperty(SupportsGet = true)]
+        public Gender? GenderFilter { get; set; }
+
+        //Sort
+        [BindProperty(SupportsGet = true)]
+        public string? SortOrder { get; set; }
 
         public async Task OnGetAsync()
         {
-            Member = await _context.Member.ToListAsync();
+            IQueryable<Member> member = _context.Member;
+
+            // Filtering by Gender
+            if (GenderFilter.HasValue)
+            {
+                member = member.Where(m => m.Gender == GenderFilter.Value);
+            }
+
+            // Sorting
+            member = SortOrder switch
+            {
+                "name_desc" => member.OrderByDescending(m => m.Name),
+                "name_asc" => member.OrderBy(m => m.Name),
+                "handicap_desc" => member.OrderByDescending(m => m.Handicap),
+                "handicap_asc" => member.OrderBy(m => m.Handicap),
+                _ => member.OrderBy(m => m.Id)
+
+            };
+
+            Member = await member.AsNoTracking().ToListAsync();
         }
+
+
+
     }
 }
