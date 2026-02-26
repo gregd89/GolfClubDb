@@ -14,57 +14,37 @@
     <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Bookings.MemberId" class="control-label"></label>
-                <select asp-for="Bookings.MemberId" class ="form-control" asp-items="ViewBag.MemberId" ></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="Bookings.TeeDate" class="control-label"></label>
                 <input asp-for="Bookings.TeeDate" class="form-control" type ="date"/>
-                <span asp-validation-for="Bookings.TeeDate" class="text-danger"></span>
+                <span asp-validation-for="Bookings.TeeDate" class="text-danger" value="@DateTime.Today.ToString("yyyy-MM-dd")"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Bookings.TeeTime" class="control-label"></label>
                 <select asp-for="Bookings.TeeTime" class="form-control" asp-items="Model.TimeOptions"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Bookings.Player1Name" class="control-label"></label>
-                <input asp-for="Bookings.Player1Name" class="form-control" />
-                <span asp-validation-for="Bookings.Player1Name" class="text-danger"></span>
+                <label asp-for="Bookings.Player1MemberId" class="control-label">Player 1</label>
+                <select asp-for="Bookings.Player1MemberId" class="form-control" asp-items="ViewBag.Members" onchange="this.form.method='get'; this.form.submit();">
+                    <option value=""> Select a Member</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="Bookings.Player1Handicap" class="control-label"></label>
-                <input asp-for="Bookings.Player1Handicap" class="form-control" />
-                <span asp-validation-for="Bookings.Player1Handicap" class="text-danger"></span>
+                <label asp-for="Bookings.Player2MemberId" class="control-label">Player  2</label>
+                <select asp-for="Bookings.Player2MemberId" class="form-control" asp-items="ViewBag.Members">
+                    <option value=""> Select a Member</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="Bookings.Player2Name" class="control-label"></label>
-                <input asp-for="Bookings.Player2Name" class="form-control" />
-                <span asp-validation-for="Bookings.Player2Name" class="text-danger"></span>
+                <label asp-for="Bookings.Player3MemberId" class="control-label">Player 3</label>
+                <select asp-for="Bookings.Player3MemberId" class="form-control" asp-items="ViewBag.Members">
+                    <option value=""> Select a Member</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="Bookings.Player2Handicap" class="control-label"></label>
-                <input asp-for="Bookings.Player2Handicap" class="form-control" />
-                <span asp-validation-for="Bookings.Player2Handicap" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Bookings.Player3Name" class="control-label"></label>
-                <input asp-for="Bookings.Player3Name" class="form-control" />
-                <span asp-validation-for="Bookings.Player3Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Bookings.Player3Handicap" class="control-label"></label>
-                <input asp-for="Bookings.Player3Handicap" class="form-control" />
-                <span asp-validation-for="Bookings.Player3Handicap" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Bookings.Player4Name" class="control-label"></label>
-                <input asp-for="Bookings.Player4Name" class="form-control" />
-                <span asp-validation-for="Bookings.Player4Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Bookings.Player4Handicap" class="control-label"></label>
-                <input asp-for="Bookings.Player4Handicap" class="form-control" />
-                <span asp-validation-for="Bookings.Player4Handicap" class="text-danger"></span>
+                <label asp-for="Bookings.Player4MemberId" class="control-label">Player 4</label>
+                <select asp-for="Bookings.Player4MemberId" class="form-control" asp-items="ViewBag.Members">
+                    <option value=""> Select a Member</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

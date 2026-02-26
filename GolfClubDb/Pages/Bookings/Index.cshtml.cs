@@ -14,10 +14,16 @@ namespace GolfClubDb.Pages.Bookings
 
         public IList<GolfClubDb.Models.Bookings> Bookings { get; set; } = default!;
 
+
         public async Task OnGetAsync()
         {
             Bookings = await _context.Bookings
-                .Include(b => b.Member).ToListAsync();
+                .Include(b => b.Player1Member)
+                .Include(b => b.Player2Member)
+                .Include(b => b.Player3Member)
+                .Include(b => b.Player4Member)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

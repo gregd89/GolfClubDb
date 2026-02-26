@@ -23,7 +23,12 @@ namespace GolfClubDb.Pages.Bookings
                 return NotFound();
             }
 
-            var bookings = await _context.Bookings.FirstOrDefaultAsync(m => m.Id == id);
+            var bookings = await _context.Bookings
+                .Include(b => b.Player1Member)
+                .Include(b => b.Player2Member)
+                .Include(b => b.Player3Member)
+                .Include(b => b.Player4Member)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (bookings is not null)
             {
