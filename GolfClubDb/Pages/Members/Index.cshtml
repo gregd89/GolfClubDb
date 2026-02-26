@@ -11,13 +11,23 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-<!-- Filter Button-->
+<!-- Gender Filter -->
 <form method="get">
     <select asp-for="GenderFilter" asp-items="Html.GetEnumSelectList<GolfClubDb.Models.Gender>()">
         <option value = "">All</option>
     </select>
     <input type="submit" value="Filter" />
+</form>
 
+<!-- Handicap Filter -->
+<form method="get">
+    <select asp-for="HandicapFilter">
+        <option value="">All</option>
+        <option value="Below 10">Below 10</option>
+        <option value="Between 11 and 20">Between 11 and 20</option>
+        <option value="Above 20">Above 20</option>
+    </select>
+    <input type="submit" value="Filter" />
 </form>
 
 <!-- Sort Buttons-->
