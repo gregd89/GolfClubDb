@@ -13,10 +13,10 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bookings.Member)
+            @Html.DisplayNameFor(model => model.Bookings.Id)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bookings.Member.Id)
+            @Html.DisplayFor(model => model.Bookings.Id)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Bookings.TeeDate)
@@ -31,52 +31,52 @@
             @Html.DisplayFor(model => model.Bookings.TeeTime)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bookings.Player1Name)
+            Player 1
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bookings.Player1Name)
+            @Model.Bookings.Player1Member?.Name
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bookings.Player1Handicap)
+            Player 1 Handicap
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bookings.Player1Handicap)
+            @Model.Bookings.Player1Member?.Handicap
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bookings.Player2Name)
+            Player 2
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bookings.Player2Name)
+            @Model.Bookings.Player2Member?.Name
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bookings.Player2Handicap)
+            Player 2 Handicap
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bookings.Player2Handicap)
+            @Model.Bookings.Player2Member?.Handicap
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bookings.Player3Name)
+            Player 3
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bookings.Player3Name)
+            @Model.Bookings.Player3Member?.Name
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bookings.Player3Handicap)
+            Player 3 Handicap
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bookings.Player3Handicap)
+            @Model.Bookings.Player3Member?.Handicap
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bookings.Player4Name)
+            Player 4
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bookings.Player4Name)
+            @Model.Bookings.Player4Member?.Name
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bookings.Player4Handicap)
+            Player 4 Handicap
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bookings.Player4Handicap)
+            @Model.Bookings.Player4Member?.Handicap
         </dd>
     </dl>
     

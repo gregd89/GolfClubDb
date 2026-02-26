@@ -46,7 +46,15 @@ namespace GolfClubDb.Pages.Members
             };
 
             Member = await member.AsNoTracking().ToListAsync();
+            List<Models.Bookings> Bookings = await _context.Bookings
+                .Include(b => b.Player1Member)
+                .Include(b => b.Player2Member)
+                .Include(b => b.Player3Member)
+                .Include(b => b.Player4Member)
+                .ToListAsync();
         }
+
+
 
 
 

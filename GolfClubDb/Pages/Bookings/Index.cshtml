@@ -10,11 +10,12 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings[0].Member)
+                @Html.DisplayNameFor(model => model.Bookings[0].Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Bookings[0].TeeDate)
@@ -23,28 +24,28 @@
                 @Html.DisplayNameFor(model => model.Bookings[0].TeeTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings[0].Player1Name)
+                Player 1
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings[0].Player1Handicap)
+                Handicap
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings[0].Player2Name)
+                Player 2
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings[0].Player2Handicap)
+                Handicap
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings[0].Player3Name)
+                Player 3
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings[0].Player3Handicap)
+                Handicap
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings[0].Player4Name)
+                Player 4
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings[0].Player4Handicap)
+                Handicap
             </th>
             <th></th>
         </tr>
@@ -53,7 +54,7 @@
 @foreach (var item in Model.Bookings) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Member.Id)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TeeDate)
@@ -62,28 +63,28 @@
                 @Html.DisplayFor(modelItem => item.TeeTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player1Name)
+                    @item.Player1Member?.Name
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player1Handicap)
+                    @item.Player1Member?.Handicap
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player2Name)
+                    @item.Player2Member?.Name
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player2Handicap)
+                    @item.Player2Member?.Handicap
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player3Name)
+                    @item.Player3Member?.Name
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player3Handicap)
+                    @item.Player3Member?.Handicap
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player4Name)
+                    @item.Player4Member?.Name
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player4Handicap)
+                    @item.Player4Member?.Handicap
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+
 namespace GolfClubDb.Pages.Bookings
 {
     public class CreateModel : PageModel
@@ -18,8 +19,12 @@ namespace GolfClubDb.Pages.Bookings
         // GET handler to display the create page
         public IActionResult OnGet()
         {
-            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "Id");
+            ViewData["Members"] = new SelectList(_context.Member, "Id", "Name");
             TimeOptions = GenerateTimeOptions();
+            Bookings.Player1Member = _context.Member.Find(Bookings.Player1MemberId);
+            Bookings.Player2Member = _context.Member.Find(Bookings.Player2MemberId);
+            Bookings.Player3Member = _context.Member.Find(Bookings.Player3MemberId);
+            Bookings.Player4Member = _context.Member.Find(Bookings.Player4MemberId);
             return Page();
         }
 
@@ -44,7 +49,7 @@ namespace GolfClubDb.Pages.Bookings
         public DateOnly? BookingDate { get; set; }
 
         // BindProperty to bind the form data to the Bookings model
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public GolfClubDb.Models.Bookings Bookings { get; set; } = default!;
 
 
