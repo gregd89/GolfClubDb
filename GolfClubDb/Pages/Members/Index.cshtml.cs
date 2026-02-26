@@ -16,9 +16,13 @@ namespace GolfClubDb.Pages.Members
 
         public IList<Member> Member { get; set; } = new List<Member>();
 
-        // Filter
+        // Gender Filter
         [BindProperty(SupportsGet = true)]
         public Gender? GenderFilter { get; set; }
+
+        // Handicap Filter
+        [BindProperty(SupportsGet = true)]
+        public string? HandicapFilter { get; set; }
 
         //Sort
         [BindProperty(SupportsGet = true)]
@@ -32,6 +36,25 @@ namespace GolfClubDb.Pages.Members
             if (GenderFilter.HasValue)
             {
                 member = member.Where(m => m.Gender == GenderFilter.Value);
+            }
+
+            // Filtering by Hanidcap
+            if (!string.IsNullOrEmpty(HandicapFilter))
+            {
+                switch (HandicapFilter)
+                {
+                    case "Below 10":
+                        member = member.Where(m => m.Handicap < 10);
+                        break;
+
+                    case "Between 11 and 20":
+                        member = member.Where(m => m.Handicap > 10 && m.Handicap <= 20);
+                        break;
+
+                    case "Above 20":
+                        member = member.Where(m => m.Handicap > 20);
+                        break;
+                }
             }
 
             // Sorting
