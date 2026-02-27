@@ -64,6 +64,8 @@ namespace GolfClubDb.Pages.Members
                 "name_asc" => member.OrderBy(m => m.Name),
                 "handicap_desc" => member.OrderByDescending(m => m.Handicap),
                 "handicap_asc" => member.OrderBy(m => m.Handicap),
+                "id_asc" => member.OrderBy(m => m.Id),
+                "id_desc" => member.OrderBy(m => m.Id),
                 _ => member.OrderBy(m => m.Id)
 
             };

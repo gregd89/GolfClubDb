@@ -5,45 +5,51 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="mb-3">Members</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-
+<!-- Create New Button, filters and sorting. -->
 <div>
-<!-- Gender Filter -->
-    <form method="get" class="row g-2 align-items-end mb-3">
-        <div class="col-md-6">
-        <select asp-for="GenderFilter" asp-items="Html.GetEnumSelectList<GolfClubDb.Models.Gender>()" class="form-select">
-            <option value = "">All</option>
-        </select>
-        <input type="submit" value="Filter by Gender" class="btn btn-primary" />
+    <div class="mt-3 mb-3">
+        <div class="d-flex flex-wrap align-items-center gap-2">
+
+            <!-- Create New Button -->
+            <a asp-page="Create" class="btn btn-primary btn-sm">Create New</a>
+
+            <div class="ms-auto d-flex flex-wrap align-items-center gap-2">
+
+                <!-- Filters -->
+                <form method="get" class="d-flex flex-wrap align-items-center gap-2">
+                    <select asp-for="GenderFilter" asp-items="Html.GetEnumSelectList<GolfClubDb.Models.Gender>()" class="form-select form-select-sm" style="width: 180px;">
+                        <option value="">All genders</option>
+                    </select>
+
+                    <select asp-for="HandicapFilter" class="form-select form-select-sm" style="width: 200px;">
+                        <option value="">All handicaps</option>
+                        <option value="Below 10">Below 10</option>
+                        <option value="Between 11 and 20">Between 11 and 20</option>
+                        <option value="Above 20">Above 20</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-outline-primary btn-sm">Apply Filters</button>
+                </form>
+
+                <!-- Sort -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort</button>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a asp-page="./Index" asp-route-sortOrder="id_asc" class="dropdown-item">Member Number Asc</a></li>
+                        <li><a asp-page="./Index" asp-route-sortOrder="id_desc" class="dropdown-item">Member Number Desc</a></li>
+                        <li><a asp-page="./Index" asp-route-sortOrder="name_asc" class="dropdown-item">Name Asc</a></li>
+                        <li><a asp-page="./Index" asp-route-sortOrder="name_desc" class="dropdown-item">Name Desc</a></li>
+                        <li><a asp-page="./Index" asp-route-sortOrder="handicap_asc" class="dropdown-item">Handicap Asc</a></li>
+                        <li><a asp-page="./Index" asp-route-sortOrder="handicap_desc" class="dropdown-item">Handicap Desc</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-
-        <div class="col-md-6">
-            <select asp-for="HandicapFilter" class="form-select">
-                <option value="">All</option>
-                <option value="Below 10">Below 10</option>
-                <option value="Between 11 and 20">Between 11 and 20</option>
-                <option value="Above 20">Above 20</option>
-            </select>
-            <input type="submit" value="Filter by Handicap" class="btn btn-secondary" />
-    </div>
-</form>
-
-<!-- Handicap Filter -->
-<form method="get">
-
-</form>
 </div>
-
-<!-- Sort Buttons-->
-<a asp-page="./Index" asp-route-sortOrder="name_asc"> Sort Name Asc</a> |
-<a asp-page="./Index" asp-route-sortOrder="name_desc"> Sort Name Desc</a> |
-<a asp-page="./Index" asp-route-sortOrder="handicap_asc"> Sort Handicap Asc</a> |
-<a asp-page="./Index" asp-route-sortOrder="handicap_desc"> Sort Handicap Desc</a> 
-
 
 <table class="table">
     <thead>
@@ -67,29 +73,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Member) {
-        <tr>
-            <td>
-                @item.Id
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Handicap)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Member)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Handicap)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-outline-info">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
