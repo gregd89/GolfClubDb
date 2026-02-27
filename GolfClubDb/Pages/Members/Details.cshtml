@@ -46,26 +46,26 @@
 
 <div>
     <h5>Bookings</h5>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>
+            <tr class="table-primary">
+                <th scope="col">
                 Date
                 </th>
-                <th>
+                <th scope="col">
                 Time
                 </th>
-                <th>
+                <th scope="col">
                 Players
                 </th>
-                <th>
+                <th scope="col">
                 </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.RelatedBookings)
             {
-                <tr>
+                <tr class="table-light">
                     <td>
                         @item.TeeDate
                     </td>

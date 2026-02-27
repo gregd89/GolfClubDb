@@ -11,24 +11,32 @@
     <a asp-page="Create">Create New</a>
 </p>
 
+<div>
 <!-- Gender Filter -->
-<form method="get">
-    <select asp-for="GenderFilter" asp-items="Html.GetEnumSelectList<GolfClubDb.Models.Gender>()">
-        <option value = "">All</option>
-    </select>
-    <input type="submit" value="Filter" />
+    <form method="get" class="row g-2 align-items-end mb-3">
+        <div class="col-md-6">
+        <select asp-for="GenderFilter" asp-items="Html.GetEnumSelectList<GolfClubDb.Models.Gender>()" class="form-select">
+            <option value = "">All</option>
+        </select>
+        <input type="submit" value="Filter by Gender" class="btn btn-primary" />
+    </div>
+
+        <div class="col-md-6">
+            <select asp-for="HandicapFilter" class="form-select">
+                <option value="">All</option>
+                <option value="Below 10">Below 10</option>
+                <option value="Between 11 and 20">Between 11 and 20</option>
+                <option value="Above 20">Above 20</option>
+            </select>
+            <input type="submit" value="Filter by Handicap" class="btn btn-secondary" />
+    </div>
 </form>
 
 <!-- Handicap Filter -->
 <form method="get">
-    <select asp-for="HandicapFilter">
-        <option value="">All</option>
-        <option value="Below 10">Below 10</option>
-        <option value="Between 11 and 20">Between 11 and 20</option>
-        <option value="Above 20">Above 20</option>
-    </select>
-    <input type="submit" value="Filter" />
+
 </form>
+</div>
 
 <!-- Sort Buttons-->
 <a asp-page="./Index" asp-route-sortOrder="name_asc"> Sort Name Asc</a> |
