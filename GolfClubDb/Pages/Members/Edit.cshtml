@@ -15,7 +15,7 @@
                 <h4>Member</h4>
                 <hr />
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-6">
                         <form method="post">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="Member.Id" />
@@ -43,20 +43,20 @@
                                 <span asp-validation-for="Member.Handicap" class="text-danger"></span>
                             </div>
 
+
+
+                            <!-- Buttons -->
+                            <div class="row g-2 mt-3">
+                                <div class="col-md-6 d-grid">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                                <div class="col-md-6 d-grid">
+                                    <a asp-page="./Index" class="btn btn-info">Back to List</a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
-
-                <!-- Buttons -->
-                <div class="row g-2 mt-3">
-                    <div class="col-12 col-md-6 d-grid">
-                        <input type="submit" value="Save" class="btn btn-primary" />
-                    </div>
-                    <div class="col-12 col-md-6 d-grid">
-                        <a asp-page="./Index" class="btn btn-info">Back to List</a>
-                    </div>
-                </div>
-
             </div>
 
         </div>
