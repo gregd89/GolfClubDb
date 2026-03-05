@@ -4,7 +4,34 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mb-3 mt-3">
+    <div class="row justify-content-center">
+        <div class="card shadow mt-3">
+            <div class="card-header">
+                <h3 class="mb-1">Welcome to Tee Time</h3>
+                <div class="text-muted">Manage members and golf bookings in one place</div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Tee Time - Your Portal for Golf Bookings</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Welcome to Tee Time, your portal for golf bookings. Users can create members and bookings and view existing members and bookings.</p>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a class="btn btn-lg btn-primary" asp-page="/Members/Create">Create a Member</a>
+                    <a class="btn btn-lg btn-success" asp-page="/Bookings/Create">Create a Booking</a>
+                </div>
+                <hr class="my-4" />
+                <div class="row g-2">
+                    <div class="col-12 col-md-6 d-grid">
+                        <a class="btn btn-outline-secondary" asp-page="/Members/Index">View Members</a>
+                    </div>
+                    <div class="col-12 col-md-6 d-grid">
+                        <a class="btn btn-outline-secondary" asp-page="/Bookings/Index">View Bookings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
