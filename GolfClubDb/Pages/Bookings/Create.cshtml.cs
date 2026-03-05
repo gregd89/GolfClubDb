@@ -19,12 +19,7 @@ namespace GolfClubDb.Pages.Bookings
         // GET handler to display the create page
         public IActionResult OnGet()
         {
-            ViewData["Members"] = new SelectList(_context.Member, "Id", "Name");
-            TimeOptions = GenerateTimeOptions();
-            Bookings.Player1Member = _context.Member.Find(Bookings.Player1MemberId);
-            Bookings.Player2Member = _context.Member.Find(Bookings.Player2MemberId);
-            Bookings.Player3Member = _context.Member.Find(Bookings.Player3MemberId);
-            Bookings.Player4Member = _context.Member.Find(Bookings.Player4MemberId);
+            UpdatePicklists();
             return Page();
         }
 
@@ -35,6 +30,37 @@ namespace GolfClubDb.Pages.Bookings
         {
             if (!ModelState.IsValid)
             {
+                UpdatePicklists();
+                return Page();
+            }
+
+
+            // Validation to prevent past dates from being selected.
+            if (Bookings.TeeDate.Value.ToDateTime(Bookings.TeeTime) < DateTime.Now)
+            {
+                ModelState.AddModelError(string.Empty, "Tee date/time cannot be in the past.");
+                UpdatePicklists();
+                return Page();
+            }
+
+            // Validation to prevent duplicate players
+            var players = new List<int?>
+                {
+                    Bookings.Player1MemberId,
+                    Bookings.Player2MemberId,
+                    Bookings.Player3MemberId,
+                    Bookings.Player4MemberId
+                };
+
+            var selectedPlayers = players
+                .Where(p => p.HasValue)
+                .Select(p => p.Value)
+                .ToList();
+
+            if (selectedPlayers.Count != selectedPlayers.Distinct().Count())
+            {
+                ModelState.AddModelError(string.Empty, "A member cannot be selected more than once, please review the list of players.");
+                UpdatePicklists();
                 return Page();
             }
 
@@ -71,6 +97,12 @@ namespace GolfClubDb.Pages.Bookings
             }
 
             return items;
+        }
+
+        private void UpdatePicklists()
+        {
+            ViewData["Members"] = new SelectList(_context.Member, "Id", "Name");
+            TimeOptions = GenerateTimeOptions();
         }
 
 
